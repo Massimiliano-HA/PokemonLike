@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void HandleUpdate()
     {
         if (!isMoving)
         {
@@ -37,8 +37,23 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        /*if(input.GetKeyDown(KeyCode.Space)) {
+            Interact();
+        }*/
+
         animator.SetBool("isMoving", isMoving);
     }
+
+    /*void Interact() 
+    {
+        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, InteractableLayer);
+        if(collider != null) {
+            collider.GetComponent<Interactable>()?.Interact();
+        }
+    }*/
 
     IEnumerator Move(Vector3 targetPos)
     {
