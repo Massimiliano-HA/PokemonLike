@@ -7,6 +7,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     private bool isMoving;
     private Vector2 input;
+    private Animator animator;
+
+    private void Start()
+    {
+        // Assurez-vous que vous référencez le composant Animator de votre joueur
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -19,17 +26,18 @@ public class PlayerController : MonoBehaviour
             {
                 input.y = 0;
             }
-            else if (input.y != 0)
-            {
-                input.x = 0;
-            }
 
             if (input != Vector2.zero)
             {
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
+
                 Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0f);
                 StartCoroutine(Move(targetPos));
             }
         }
+
+        animator.SetBool("isMoving", isMoving);
     }
 
     IEnumerator Move(Vector3 targetPos)
