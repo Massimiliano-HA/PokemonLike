@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Dialogue, Battle }
+public enum GameState { FreeRoam, Dialogue }
 
 public class GameController : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Camera worldCamera;
     //[SerializeField] BattleSystem battleSystem;
 
-    //GameState gameState;
+    GameState state;
 
     /*private void Awake() {
         ConditionsDB.Init();
@@ -47,15 +47,15 @@ public class GameController : MonoBehaviour
         worldCamera.gameObject.SetActive(true);
     }*/
 
-    /*private void Update() {
-        if(gameState == GameState.FreeRoam) {
+    private void Update() {
+        if(state == GameState.FreeRoam) {
             playerController.HandleUpdate();
         }
-        else if (state == GameState.Battle) {
+        /*else if (state == GameState.Battle) {
             battleSystem.HandleUpdate()
-        }
+        }*/
         else if (state == GameState.Dialogue) {
             DialogueManager.Instance.HandleUpdate();
         } 
-    }*/
+    }
 }
