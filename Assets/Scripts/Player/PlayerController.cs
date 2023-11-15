@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        /*if(input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.Space)) {
             Interact();
-        }*/
+        }
 
         animator.SetBool("isMoving", isMoving);
     }
@@ -79,5 +79,20 @@ public class PlayerController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(targetPos, 0.1f, solidObjectsLayer | interactableLayer);
 
         return collider == null;
+    }
+
+    public void LookForward(Vector3 targetPos) {
+
+        var xdiff = Mathf.Floor(targetPos.x) - Mathf.Floor(transform.position.x);
+        var ydiff = Mathf.Floor(targetPos.y) - Mathf.Floor(transform.position.y);
+
+        if(xdiff == 0 || ydiff == 0) {
+            Debug.Log("Looking forward");
+            animator.SetFloat("moveX", Mathf.Clamp(xdiff, -1f, 1f));
+            animator.SetFloat("moveY", Mathf.Clamp(ydiff, -1f, 1f));
+        }
+        else {
+            Debug.LogError("Can't look diagonally");
+        }
     }
 }

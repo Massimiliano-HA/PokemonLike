@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
         ConditionsDB.Init();
     }*/
 
-    /*private void Start() {
+    private void Start() {
         //player.OnEncountered += StartBattle;
         //battleSystem.OnBattleOver += EndBattle;
 
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
             if (state == GameState.Dialogue)
                 state = GameState.FreeRoam;
         };
-    }*/
+    }
 
     /*void StartBattle() {
         state = GameState.Battle;

@@ -8,7 +8,12 @@ public class NPCController : MonoBehaviour, Interactable
     [SerializeField] Dialogue dialogue;
     public void Interact()
     {
-        DialogueManager.Instance.ShowDialogue(dialogue);
-        Debug.Log("Interacting with the NPC");
+        PlayerController player = FindObjectOfType<PlayerController>();
+        
+        if(player != null) {
+            player.LookForward(transform.position);
+            Debug.Log("NPC is looking forward.");
+            StartCoroutine(DialogueManager.Instance.ShowDialogue(dialogue));
+        }
     }
 }
