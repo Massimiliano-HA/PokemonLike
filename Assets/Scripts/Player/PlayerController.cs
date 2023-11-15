@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public LayerMask solidObjectLayer
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
@@ -33,7 +34,10 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0f);
-                StartCoroutine(Move(targetPos));
+
+                if(IsWalkable(targetPos)) {
+                    StartCoroutine(Move(targetPos));
+                }
             }
         }
 
@@ -66,5 +70,9 @@ public class PlayerController : MonoBehaviour
         }
 
         isMoving = false;
+    }
+
+    private bool IsWalkable(Vector3 targetPos) {
+        if(Physics2D.OverlapCircle(targetPos, 0.3f, Foreground) != null)
     }
 }
