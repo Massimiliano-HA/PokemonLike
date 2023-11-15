@@ -9286,7 +9286,7 @@ Transform:
   m_GameObject: {fileID: 616305902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52, y: 33.55, z: 0}
+  m_LocalPosition: {x: 1.505, y: 33.499, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9305,7 +9305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1190886351}
-  teleportOffset: {x: 0, y: -2}
+  teleportOffset: {x: 0, y: -2.7}
 --- !u!1 &755506177
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,7 +9808,7 @@ Transform:
   m_GameObject: {fileID: 1190886348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.47, y: 4.8, z: 0}
+  m_LocalPosition: {x: -5.492, y: 4.501, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9827,7 +9827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 616305904}
-  teleportOffset: {x: 0, y: 2}
+  teleportOffset: {x: 0, y: 2.3}
 --- !u!1 &1313405111
 GameObject:
   m_ObjectHideFlags: 0
