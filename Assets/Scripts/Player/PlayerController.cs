@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
+    public bool justTeleported = false;
 
     private void Start()
     {
@@ -46,6 +47,19 @@ public class PlayerController : MonoBehaviour
         }*/
 
         animator.SetBool("isMoving", isMoving);
+
+        if (justTeleported)
+        {
+            justTeleported = false;
+            isMoving = false;
+            StopAllCoroutines();
+        }
+    }
+
+    IEnumerator ResetTeleportFlag()
+    {
+        yield return new WaitForSeconds(0.1f);
+        justTeleported = false;
     }
 
     /*void Interact() 
