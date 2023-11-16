@@ -10,4 +10,5 @@ public class Dialogue
     public List<string> Lines {
         get { return lines; }
     }
+
 }

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public LayerMask solidObjectsLayer;
     public LayerMask interactableLayer;
+    public LayerMask grassLayer;
 
     private void Start()
     {
@@ -72,6 +73,8 @@ public class PlayerController : MonoBehaviour
         }
 
         isMoving = false;
+
+        CheckForEncounters();
     }
 
     private bool IsWalkable(Vector3 targetPos)
@@ -93,6 +96,14 @@ public class PlayerController : MonoBehaviour
         }
         else {
             Debug.LogError("Can't look diagonally");
+        }
+    }
+
+    public void CheckForEncounters() {
+        if(Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer) != null) {
+            if(Random.Range(1, 101) <= 10) {
+                Debug.Log("Encountered a wild pokemon");
+            }
         }
     }
 }
