@@ -21529,7 +21529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d257d510902d4b8eb38ec131b7894f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 0}
+  fader: {fileID: 1044564177}
   player: {fileID: 1430559985}
 --- !u!95 &1430559984
 Animator:
