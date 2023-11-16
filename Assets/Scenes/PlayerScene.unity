@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 207810651}
   - component: {fileID: 207810650}
   - component: {fileID: 207810654}
+  - component: {fileID: 207810655}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 797346953}
   itemsMenu: {fileID: 610513614}
+  gameController: {fileID: 0}
 --- !u!114 &207810652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2072159690}
   worldCamera: {fileID: 0}
+  state: 0
 --- !u!4 &207810653
 Transform:
   m_ObjectHideFlags: 0
@@ -303,6 +306,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ddb908fa7c729419f05867d9550daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &207810655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207810649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043014efc950b7e4dbf4ca87ab87c7cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 207810652}
 --- !u!1 &299034788
 GameObject:
   m_ObjectHideFlags: 0

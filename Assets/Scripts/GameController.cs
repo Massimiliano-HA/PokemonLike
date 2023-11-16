@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
         //         state = GameState.FreeRoam;
         // };
 
+        SavingSystem.i.Load("saveSlot1");
+
         menuController.onBack += () =>
         {
             state = GameState.FreeRoam;
@@ -98,13 +100,13 @@ public class GameController : MonoBehaviour
         }
         else if (selectedItem == 3)
         {
-            QuitGame();
+            Quit();
         }
 
         state = GameState.FreeRoam;
     }
 
-    void QuitGame()
+    public void Quit()
 {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
