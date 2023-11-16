@@ -33,47 +33,40 @@ public class MenuController : MonoBehaviour
         menu.SetActive(false);
     }
 
-    public void HandleUpdate()
+  public void HandleUpdate()
+{
+    int prevSelection = selectedItem;
+
+    if (Input.GetKeyDown(KeyCode.DownArrow))
+        ++selectedItem;
+    else if (Input.GetKeyDown(KeyCode.UpArrow))
+        --selectedItem;
+
+    selectedItem = Mathf.Clamp(selectedItem, 0, menuItems.Count - 1);
+
+    if (prevSelection != selectedItem)
+        UpdateItemSelection();
+
+    if (Input.GetKeyDown(KeyCode.Escape))
     {
-        int prevSelection = selectedItem;
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            ++selectedItem;
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-            --selectedItem;
-
-        selectedItem = Mathf.Clamp(selectedItem, 0, menuItems.Count - 1);
-
-        if (prevSelection != selectedItem)
-            UpdateItemSelection();
-
-         if (Input.GetKeyDown(KeyCode.Escape))
-         {
+        if (menu.activeSelf)
+        {
+            CloseMenu();
+        }
+        else
+        {
+            OpenMenu();
+        }
+    }
+    else if (Input.GetKeyDown(KeyCode.Return))
+    {
+        if (menu.activeSelf)
+        {
             onMenuSelected?.Invoke(selectedItem);
             CloseMenu();
-         } 
-         else if (Input.GetKeyDown(KeyCode.W))
-         {
-            onBack?.Invoke();
-            CloseMenu();
-         }
-         else if (Input.GetKeyDown(KeyCode.S))
-         {
-            onBack?.Invoke();
-            CloseMenu();
-         }
-         else if (Input.GetKeyDown(KeyCode.A))
-         {
-            onBack?.Invoke();
-            CloseMenu();
-         }
-         else if (Input.GetKeyDown(KeyCode.D))
-         {
-            onBack?.Invoke();
-            CloseMenu();
-         }
-
+        }
     }
+}
 
     void UpdateItemSelection()
     {

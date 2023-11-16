@@ -90,15 +90,28 @@ public class GameController : MonoBehaviour
         }
         else if (selectedItem == 1)
         {
-            
+            SavingSystem.i.Save("saveSlot1");
         }
         else if (selectedItem == 2)
         {
-            
+            SavingSystem.i.Load("saveSlot1");
         }
         else if (selectedItem == 3)
         {
-            
+            QuitGame();
         }
+
+        state = GameState.FreeRoam;
+    }
+
+    void QuitGame()
+{
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
     }
 }
+
+
