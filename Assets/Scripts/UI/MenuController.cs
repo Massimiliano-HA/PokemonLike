@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +7,9 @@ using System.Linq;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menu;
-
     [SerializeField] GameObject itemsMenu;
 
+    [SerializeField] GameController gameController;
     public event Action<int> onMenuSelected;
     public event Action onBack;
     
@@ -19,7 +18,7 @@ public class MenuController : MonoBehaviour
 
     private void Awake()
     {
-       menuItems = itemsMenu.GetComponentsInChildren<Text>().ToList();
+        menuItems = itemsMenu.GetComponentsInChildren<Text>().ToList();
     }
 
     public void OpenMenu()
@@ -28,45 +27,46 @@ public class MenuController : MonoBehaviour
         UpdateItemSelection();
     }
 
-     public void CloseMenu()
+    public void CloseMenu()
     {
         menu.SetActive(false);
     }
 
-  public void HandleUpdate()
-{
-    int prevSelection = selectedItem;
-
-    if (Input.GetKeyDown(KeyCode.DownArrow))
-        ++selectedItem;
-    else if (Input.GetKeyDown(KeyCode.UpArrow))
-        --selectedItem;
-
-    selectedItem = Mathf.Clamp(selectedItem, 0, menuItems.Count - 1);
-
-    if (prevSelection != selectedItem)
-        UpdateItemSelection();
-
-    if (Input.GetKeyDown(KeyCode.Escape))
+    public void HandleUpdate()
     {
-        if (menu.activeSelf)
+        int prevSelection = selectedItem;
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            ++selectedItem;
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+            --selectedItem;
+
+        selectedItem = Mathf.Clamp(selectedItem, 0, menuItems.Count - 1);
+
+        if (prevSelection != selectedItem)
+            UpdateItemSelection();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseMenu();
+            if (menu.activeSelf)
+            {
+                CloseMenu();
+                onBack();
+            }
+            else
+            {
+                OpenMenu();
+            }
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.Return))
         {
-            OpenMenu();
+            if (menu.activeSelf)
+            {
+                onMenuSelected?.Invoke(selectedItem);
+                CloseMenu();
+            }
         }
     }
-    else if (Input.GetKeyDown(KeyCode.Return))
-    {
-        if (menu.activeSelf)
-        {
-            onMenuSelected?.Invoke(selectedItem);
-            CloseMenu();
-        }
-    }
-}
 
     void UpdateItemSelection()
     {
@@ -83,3 +83,4 @@ public class MenuController : MonoBehaviour
         }
     }
 }
+

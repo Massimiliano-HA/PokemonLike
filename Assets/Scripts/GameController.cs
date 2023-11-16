@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Camera worldCamera;
     //[SerializeField] BattleSystem battleSystem;
 
-    GameState state;
+    public GameState state;
 
     MenuController menuController;
 
