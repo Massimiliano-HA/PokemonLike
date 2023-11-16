@@ -501,6 +501,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &563519160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8609965792462340685, guid: 40c1e226b2cd44e53a1caaab14c7d5c3, type: 3}
+  m_PrefabInstance: {fileID: 982283758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &699502159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,6 +3929,7 @@ GameObject:
   - component: {fileID: 713510679}
   - component: {fileID: 713510678}
   - component: {fileID: 713510680}
+  - component: {fileID: 713510681}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3973,6 +3979,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1433671126}
+  itemsMenu: {fileID: 563519160}
+--- !u!114 &713510681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713510677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be4f31de5c274f7795696091377dbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedColor: {r: 0.17254902, g: 0.44705883, b: 0.78431374, a: 1}
 --- !u!1 &734826669
 GameObject:
   m_ObjectHideFlags: 0
