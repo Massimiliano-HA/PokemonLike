@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
     private Animator animator;
     public bool justTeleported = false;
+    public bool canMove = true;
 
     private void Start()
     {
@@ -19,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     public void HandleUpdate()
     {
+        if(!canMove)
+            return;
+
         if (!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
@@ -53,13 +57,8 @@ public class PlayerController : MonoBehaviour
             justTeleported = false;
             isMoving = false;
             StopAllCoroutines();
+            canMove = false;
         }
-    }
-
-    IEnumerator ResetTeleportFlag()
-    {
-        yield return new WaitForSeconds(0.1f);
-        justTeleported = false;
     }
 
     /*void Interact() 
