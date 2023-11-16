@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Pokemon 
 {
-    PokemonBase _base;
+    public PokemonBase Base { get; set; }
 
-    int level;
+    public int Level { get; set; }
 
     public int HP { get; set; }
 
     public List<Move> Moves { get; set; }
 
     public Pokemon(PokemonBase pbase, int plevel) {
-        _base = pbase;
-        level = plevel;
-        HP = _base.MaxHp;
+        Base = pbase;
+        Level = plevel;
+        HP = MaxHp;
 
         Moves = new List<Move>();
-        foreach (var move in _base.LearnableMoves) {
-            if (move.Level <= level) {
+        foreach (var move in Base.LearnableMoves) {
+            if (move.Level <= Level) {
                 Moves.Add(new Move(move.Move, move.Move.Pp));
             }
 
@@ -31,27 +31,27 @@ public class Pokemon
     }
 
     public int Attack {
-        get { return Mathf.FloorToInt((_base.Attack * level) / 100f) + 5; }
+        get { return Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5; }
     }
 
     public int SpecialAttack {
-        get { return Mathf.FloorToInt((_base.SpecialAttack * level) / 100f) + 5; }
+        get { return Mathf.FloorToInt((Base.SpecialAttack * Level) / 100f) + 5; }
     }
 
     public int Defense {
-        get { return Mathf.FloorToInt((_base.Defense * level) / 100f) + 5; }
+        get { return Mathf.FloorToInt((Base.Defense * Level) / 100f) + 5; }
     }
 
     public int SpecialDefense {
-        get { return Mathf.FloorToInt((_base.SpecialDefense * level) / 100f) + 5; }
+        get { return Mathf.FloorToInt((Base.SpecialDefense * Level) / 100f) + 5; }
     }
 
     public int MaxHp {
-        get { return Mathf.FloorToInt((_base.MaxHp * level) / 100f) + 10; }
+        get { return Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10; }
     }
 
     public int Speed {
-        get { return Mathf.FloorToInt((_base.Speed * level) / 100f) + 5; }
+        get { return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; }
     }
 
 }
