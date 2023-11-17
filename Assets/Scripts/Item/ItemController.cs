@@ -26,7 +26,7 @@ public class ItemController : MonoBehaviour
         currentItems += items;
         itemText.text = "Items : " + currentItems.ToString();
 
-        if (currentItems == 7)
+        if (currentItems == 9)
         {
             SceneManager.LoadSceneAsync(2);
             SavingSystem.i.Delete("saveSlot1");
