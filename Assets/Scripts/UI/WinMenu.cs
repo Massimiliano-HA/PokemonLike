@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WinMenu : MonoBehaviour
 {
+ 
    public void RePlayGame()
    {
         SceneManager.LoadSceneAsync(1);
