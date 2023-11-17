@@ -47144,7 +47144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     lines:
-    - Si tu continue sur le pont tu trouveras un chateaux
+    - "Si tu continue sur le pont tu trouveras un ch\xE2teau"
 --- !u!61 &1565668227
 BoxCollider2D:
   m_ObjectHideFlags: 0
