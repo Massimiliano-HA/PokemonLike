@@ -844,7 +844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742374370892400186, guid: 40c1e226b2cd44e53a1caaab14c7d5c3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953256501352058732, guid: 40c1e226b2cd44e53a1caaab14c7d5c3, type: 3}
       propertyPath: m_fontSize
@@ -1067,11 +1067,6 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4742374370892400186, guid: 40c1e226b2cd44e53a1caaab14c7d5c3, type: 3}
   m_PrefabInstance: {fileID: 766756328}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &894705383 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 179313456869687971, guid: 3b640bb2c362872408dca232ff94f58d, type: 3}
-  m_PrefabInstance: {fileID: 1448403414030659780}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &897637753
 GameObject:
@@ -32292,6 +32287,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!224 &1545223000 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6516241253159928252, guid: 40c1e226b2cd44e53a1caaab14c7d5c3, type: 3}
+  m_PrefabInstance: {fileID: 766756328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1571674754
 GameObject:
   m_ObjectHideFlags: 0
@@ -48438,7 +48438,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 813930344}
+  m_Father: {fileID: 1545223000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -50209,7 +50209,7 @@ MonoBehaviour:
     m_Bits: 256
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   grassLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -50360,8 +50360,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 381185335
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
