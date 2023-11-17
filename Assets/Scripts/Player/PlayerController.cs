@@ -2,15 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISavable
 {
     public float moveSpeed;
+    public LayerMask SolidObjects;
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
     public LayerMask solidObjectsLayer;
     public LayerMask interactableLayer;
     public LayerMask grassLayer;
+    public bool justTeleported = false;
+    public bool canMove = true;
 
     private void Start()
     {
@@ -20,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public void HandleUpdate()
     {
+        if(!canMove)
+            return;
+
         if (!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
@@ -36,9 +42,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("moveY", input.y);
 
                 Vector3 targetPos = transform.position + new Vector3(input.x, input.y, 0f);
-                
-                if (IsWalkable(targetPos))
-                {
+
+                if(IsWalkable(targetPos)) {
                     StartCoroutine(Move(targetPos));
                 }
             }
@@ -49,6 +54,14 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("isMoving", isMoving);
+
+        if (justTeleported)
+        {
+            justTeleported = false;
+            isMoving = false;
+            StopAllCoroutines();
+            canMove = false;
+        }
     }
 
     void Interact() 
@@ -105,5 +118,24 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Encountered a wild pokemon");
             }
         }
+    }
+
+    private bool IsWalkable(Vector3 targetPos) {
+        if(Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjects) != null) {
+            return false;
+        }
+        return true;
+    }
+
+    public object CaptureState()
+    {
+        float[] position = new float[] { transform.position.x, transform.position.y };
+        return position;
+    }
+
+    public void RestoreState(object state)
+    {
+        var position = (float[])state;
+        transform.position = new Vector3(position[0], position[1]);
     }
 }

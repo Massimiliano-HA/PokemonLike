@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Portal
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: itemsLayer
+    uniqueID: 1585373125
+    locked: 0
   - name: Background
     uniqueID: 3663236237
     locked: 0
@@ -52,4 +57,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 381185335
+    locked: 0
+  - name: Others
+    uniqueID: 2286967653
     locked: 0

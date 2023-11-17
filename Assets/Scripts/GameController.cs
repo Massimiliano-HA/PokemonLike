@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Dialogue }
+public enum GameState { FreeRoam, Dialogue, Menu }
 
 public class GameController : MonoBehaviour
 {
@@ -12,16 +12,29 @@ public class GameController : MonoBehaviour
 
     GameState state;
 
-    /*private void Awake() {
-        ConditionsDB.Init();
-    }*/
+    MenuController menuController;
+
+    private void Awake() {
+        menuController = GetComponent<MenuController>();
+        // ConditionsDB.Init();
+    }
 
     private void Start() {
         //player.OnEncountered += StartBattle;
         //battleSystem.OnBattleOver += EndBattle;
 
-        DialogueManager.Instance.OnShowDialogue += () => {
-            state = GameState.Dialogue;
+        // DialogueManager.Instance.OnShowDialogue += () => {
+        //     state = GameState.Dialogue;
+        // };
+
+        // DialogueManager.Instance.OnCloseDialogue += () => {
+        //     if (state == GameState.Dialogue)
+        //         state = GameState.FreeRoam;
+        // };
+
+        menuController.onBack += () =>
+        {
+            state = GameState.FreeRoam;
         };
 
         DialogueManager.Instance.OnCloseDialogue += () => {
@@ -29,6 +42,8 @@ public class GameController : MonoBehaviour
                 state = GameState.FreeRoam;
         };
     }
+        menuController.onMenuSelected += OnMenuSelected;
+     }
 
     /*void StartBattle() {
         state = GameState.Battle;
@@ -47,15 +62,61 @@ public class GameController : MonoBehaviour
         worldCamera.gameObject.SetActive(true);
     }*/
 
-    private void Update() {
-        if(state == GameState.FreeRoam) {
+    private void Update()
+    {
+        if (state == GameState.FreeRoam)
+        {
             playerController.HandleUpdate();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                menuController.OpenMenu();
+                state = GameState.Menu;
+            }
         }
         /*else if (state == GameState.Battle) {
             battleSystem.HandleUpdate()
         }*/
-        else if (state == GameState.Dialogue) {
+        else if (state == GameState.Dialogue)
+        {
             DialogueManager.Instance.HandleUpdate();
         } 
+        else if (state == GameState.Menu)
+        {
+            menuController.HandleUpdate();
+        }
+    }
+
+    void OnMenuSelected(int selectedItem)
+    {
+        if (selectedItem == 0)
+        {
+
+        }
+        else if (selectedItem == 1)
+        {
+            SavingSystem.i.Save("saveSlot1");
+        }
+        else if (selectedItem == 2)
+        {
+            SavingSystem.i.Load("saveSlot1");
+        }
+        else if (selectedItem == 3)
+        {
+            QuitGame();
+        }
+
+        state = GameState.FreeRoam;
+    }
+
+    void QuitGame()
+{
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
     }
 }
+
+
