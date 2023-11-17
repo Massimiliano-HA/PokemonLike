@@ -23,14 +23,14 @@ public class GameController : MonoBehaviour
         //player.OnEncountered += StartBattle;
         //battleSystem.OnBattleOver += EndBattle;
 
-        // DialogueManager.Instance.OnShowDialogue += () => {
-        //     state = GameState.Dialogue;
-        // };
+        DialogueManager.Instance.OnShowDialogue += () => {
+        state = GameState.Dialogue;
+        };
 
-        // DialogueManager.Instance.OnCloseDialogue += () => {
-        //     if (state == GameState.Dialogue)
-        //         state = GameState.FreeRoam;
-        // };
+        DialogueManager.Instance.OnCloseDialogue += () => {
+        if (state == GameState.Dialogue)
+        state = GameState.FreeRoam;
+        };
 
         SavingSystem.i.Load("saveSlot1");
 
@@ -40,7 +40,12 @@ public class GameController : MonoBehaviour
         };
 
         menuController.onMenuSelected += OnMenuSelected;
-     }
+
+        DialogueManager.Instance.OnCloseDialogue += () => {
+            if (state == GameState.Dialogue)
+                state = GameState.FreeRoam;
+        };
+    }
 
     /*void StartBattle() {
         state = GameState.Battle;
@@ -64,12 +69,6 @@ public class GameController : MonoBehaviour
         if (state == GameState.FreeRoam)
         {
             playerController.HandleUpdate();
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                menuController.OpenMenu();
-                state = GameState.Menu;
-            }
         }
         /*else if (state == GameState.Battle) {
             battleSystem.HandleUpdate()
@@ -78,10 +77,17 @@ public class GameController : MonoBehaviour
         {
             DialogueManager.Instance.HandleUpdate();
         } 
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                menuController.OpenMenu();
+                state = GameState.Menu;
+            }
         else if (state == GameState.Menu)
         {
             menuController.HandleUpdate();
         }
+        
     }
 
     void OnMenuSelected(int selectedItem)

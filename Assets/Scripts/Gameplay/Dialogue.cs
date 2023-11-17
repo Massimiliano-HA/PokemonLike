@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Dialogue : MonoBehaviour
+public class Dialogue 
 {
     [SerializeField] List<string> lines;
 
     public List<string> Lines {
         get { return lines; }
     }
+
 }
