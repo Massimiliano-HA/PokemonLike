@@ -93,8 +93,12 @@ public class PlayerController : MonoBehaviour, ISavable
     private bool IsWalkable(Vector3 targetPos)
     {
         Collider2D collider = Physics2D.OverlapCircle(targetPos, 0.1f, solidObjectsLayer | interactableLayer);
-
         return collider == null;
+
+        if(Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjects) != null) {
+            return false;
+        }
+        return true;
     }
 
     public void LookForward(Vector3 targetPos) {
@@ -118,13 +122,6 @@ public class PlayerController : MonoBehaviour, ISavable
                 Debug.Log("Encountered a wild pokemon");
             }
         }
-    }
-
-    private bool IsWalkable(Vector3 targetPos) {
-        if(Physics2D.OverlapCircle(targetPos, 0.1f, SolidObjects) != null) {
-            return false;
-        }
-        return true;
     }
 
     public object CaptureState()
