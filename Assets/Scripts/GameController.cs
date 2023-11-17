@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Camera worldCamera;
     //[SerializeField] BattleSystem battleSystem;
 
-    GameState state;
+    public GameState state;
 
     MenuController menuController;
 
@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
         //     if (state == GameState.Dialogue)
         //         state = GameState.FreeRoam;
         // };
+
+        SavingSystem.i.Load("saveSlot1");
 
         menuController.onBack += () =>
         {
@@ -98,13 +100,13 @@ public class GameController : MonoBehaviour
         }
         else if (selectedItem == 3)
         {
-            QuitGame();
+            Quit();
         }
 
         state = GameState.FreeRoam;
     }
 
-    void QuitGame()
+    public void Quit()
 {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
